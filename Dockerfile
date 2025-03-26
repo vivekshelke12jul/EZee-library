@@ -7,6 +7,9 @@ LABEL authors="vivek"
 WORKDIR /app
 COPY . .
 
+RUN chmod +x gradlew
+RUN ./gradlew clean build --no-daemon
+
 # =================================
 # run stage
 # ---------------------------------
