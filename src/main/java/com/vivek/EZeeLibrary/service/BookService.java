@@ -14,6 +14,13 @@ public class BookService {
     private BookRepository bookRepository;
 
     public Book save(Book book) {
+        if(bookRepository.findById(book.getId()) != null){
+            throw new IllegalArgumentException("Book with ID " + book.getId() + " already exists.");
+        }
+        if(book.getTitle() == null || book.getTitle().isEmpty()){
+            throw new IllegalArgumentException("Book title cannot be empty.");
+        }
+
         return bookRepository.save(book);
     }
 

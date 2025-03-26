@@ -77,7 +77,12 @@ public class LibraryMenu implements CommandLineRunner {
         boolean available = scanner.nextLine().equalsIgnoreCase("y");
 
         Book book = new Book(id, title, author, genre, available);
-        bookService.save(book);
+        try {
+            bookService.save(book);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return;
+        }
         System.out.println("Book added successfully.");
     }
 
